@@ -1,0 +1,20 @@
+<script>
+    let modulo = window.location.href.slice(-1);
+    if (!modulo.match(/^[d-f]$/g)) {
+        alert('Módulo incorrecto. Presione el botón de nuevo.');
+        window.location.href = "/";
+    } else {
+        alert('Operación realizada. Cierre este diálogo para cerrar la barrera.');
+        let senalTerm;
+        if (modulo == "d") {
+            senalTerm = "g";
+        }
+        if (modulo == "e") {
+            senalTerm = "h";
+        }
+        if (modulo == "f") {
+            senalTerm = "i";
+        }
+        window.location.href = "/senal/" + senalTerm;
+    }
+</script>

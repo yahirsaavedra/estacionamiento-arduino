@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Proyecto de Lenguajes de Interfaz</title>
+<style>
+    body {
+        text-align: center;
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+<script>
+    window.addEventListener('load', function () {
+        const ws = new WebSocket("<%- ip %>");
+        ws.onmessage = function(event) {
+            if (event.data.endsWith("<%- modulo %>")) {
+                window.location.reload();
+            }
+        };
+    });
+</script>
+</head>
+<body>
+    <img src="/img/espera.gif" width="30%" />
+    <h1>✅ El m&oacute;dulo est&aacute; listo ⌛</h1>
+    <p>Por favor, espere a que se detecte alg&uacute;n objetivo.</p>
+    <p>Este es el m&oacute;dulo de cruce <%- modulo.replace("-", " ") %>.</p>
+<p><em>SAAVEDRA GALLARDO YAHIR ALEJANDRO, 21490577</em></p>
+</body>
+</html>

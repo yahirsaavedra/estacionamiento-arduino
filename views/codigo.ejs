@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    body {
+        text-align: center;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+        width: 800px;
+    }
+</style>
+<title>Proyecto de Lenguajes de Interfaz</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+<script>
+    window.addEventListener('load', function () {
+        Quagga.init({
+            inputStream : {
+                name : "Live",
+                type : "LiveStream",
+                target: document.querySelector('#interactive')
+            },
+            decoder: {
+                readers: [
+                        "code_128_reader",
+                        "ean_reader",
+                        "ean_8_reader",
+                        "code_39_reader",
+                        "code_39_vin_reader",
+                        "codabar_reader",
+                        "upc_reader",
+                        "upc_e_reader",
+                        "i2of5_reader"
+                    ],
+            }
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                return
+            }
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function(result) {
+            Quagga.stop();
+            window.location.href += "/" + result.codeResult.code;
+        });
+        const ws = new WebSocket("<%- ip %>");
+
+        ws.onmessage = function(event) {
+            if (event.data.endsWith("<%- modulo %> DELETE")) {
+                window.location.reload();
+            }
+        };
+        let message = new SpeechSynthesisUtterance();
+        message.voice = window.speechSynthesis.getVoices().filter(function(voice) { return voice.name == "Google español de Estados Unidos"; })[0];
+        message.text = "Por favor, escanee su credencial escolar ahora.";
+        window.speechSyntesis.cancel();
+        window.speechSynthesis.speak(message);
+    });
+</script>
+</head>
+<body>
+<h1>Por favor, escanee su credencial escolar ahora.</h1>
+<p><em>SAAVEDRA GALLARDO YAHIR ALEJANDRO, 21490577</em></p>
+<div id="interactive" class="viewport"></div>
+</body>
+</html>

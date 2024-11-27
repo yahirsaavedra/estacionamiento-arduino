@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Proyecto de Lenguajes de Interfaz</title>
+<style>
+    body {
+        text-align: center;
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+<script>
+    window.addEventListener('load', function () {
+        const ws = new WebSocket("<%- ip %>");
+
+        ws.onmessage = function(event) {
+            if (event.data.endsWith("admin")) {
+                window.location.href = "/admin";
+            }
+        };
+    });
+</script>
+</head>
+<body>
+<img src="/img/policia.png" width="30%" />
+<h1>¿C&oacute;mo usar este programa?</h1>
+<p>Para comenzar, aseg&uacute;rese de que esta p&aacute;gina cuente con permisos 
+habilitados en su navegador para acceder a la c&aacute;mara. As&iacute; mismo,
+es necesario que su c&aacute;mara y computadora est&eacute;n conectados a la
+misma red de Internet, adem&aacute;s de que su computadora y su m&oacute;dulo
+HC-06 est&eacute;n conectados a Bluetooth en todo momento. Por favor, no intente
+ejecutar este servidor fuera del host local.</p>
+
+<p>Este programa funciona a trav&eacute;s de la interacci&oacute;n de tres 
+m&oacute;dulos de un estacionamiento inteligente: dos para cruce vehicular 
+y uno para cruce peatonal.</p>
+
+<p>Abra los tres m&oacute;dulos en pestanas diferentes:</p>
+<ul>
+    <li><a target="_blank" href="/peatonal">Cruce peatonal</a></li>
+    <li><a target="_blank" href="/vehicular-1">Cruce vehicular 1</a></li>
+    <li><a target="_blank" href="/vehicular-2">Cruce vehicular 2</a></li>
+</ul>
+<p>Mantenga abierta esta pesta&ntilde;a para usar la interfaz de emergencia en
+el momento que sea necesario.</p>
+<p>A continuaci&oacute;n, observe el funcionamiento del estacionamiento
+inteligente.</p>
+
+<p><em>SAAVEDRA GALLARDO YAHIR ALEJANDRO, 21490577</em></p>
+</body>
+</html>

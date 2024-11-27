@@ -1,0 +1,24 @@
+<script>
+    let modulo = prompt('¿Qué módulo desea abrir?');
+    if (modulo !== null) {
+        if (!modulo.match(/vehicular-(1|2)|peatonal/g)) {
+            alert('Módulo incorrecto. Presione el botón de nuevo.');
+            window.location.href = "/";
+        } else {
+            let senal;
+            if (modulo == "peatonal") {
+                senal = "d";
+            }
+            if (modulo == "vehicular-1") {
+                senal = "e";
+            }
+            if (modulo == "vehicular-2") {
+                senal = "f";
+            }
+            window.location.href = "/senal/" + senal;
+        }
+    } else {
+        alert('Interfaz cancelada.');
+        window.location.href = "/";
+    }
+</script>
